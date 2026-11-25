@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Технофургон — три концепта главной страницы</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=Montserrat:wght@700;800&display=swap">
+<style>
+:root{--ink:#14161a;--ink-2:#2a2e35;--steel:#59626d;--line:#d5d9dd;--ground:#eef0f2;--card:#fff;--yellow:#f2bd38;
+  --head:"Montserrat","Arial Black",Arial,sans-serif;--body:"Golos Text","Segoe UI",Roboto,Arial,sans-serif}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--ground);color:var(--ink);font:400 17px/1.6 var(--body)}
+img{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3,p,ul,ol{margin:0;padding:0}
+h1,h2,h3{font-family:var(--head);font-weight:800;line-height:1.1;letter-spacing:-.01em;text-wrap:balance}
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left));padding-right:max(20px,env(safe-area-inset-right))}
+:focus-visible{outline:3px solid #d99f12;outline-offset:3px}
+
+.top{background:var(--ink);color:#fff}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:68px}
+.top img{height:30px;width:auto}
+.top span{font-size:14px;color:#b9c0c8;text-align:right}
+
+.intro{padding:56px 0 40px}
+.badge{display:inline-block;background:var(--yellow);padding:6px 12px;border-radius:4px;font-size:14px;font-weight:600}
+.intro h1{font-size:clamp(2rem,4.6vw,3.4rem);margin:18px 0 18px;max-width:17em}
+.intro p{max-width:44em;font-size:19px;color:var(--ink-2)}
+.intro p+p{margin-top:12px}
+
+.vars{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;padding-bottom:64px}
+.v{display:flex;flex-direction:column;background:var(--card);border-radius:8px;overflow:hidden;text-decoration:none;border:1px solid var(--line);transition:transform .18s,box-shadow .18s}
+.v:hover{transform:translateY(-4px);box-shadow:0 18px 36px rgba(20,22,26,.14)}
+.v img{width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;object-position:top;border-bottom:1px solid var(--line)}
+.v div{padding:22px 24px 26px;display:flex;flex-direction:column;gap:10px;flex:1}
+.v small{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--steel)}
+.v h2{font-size:24px}
+.v p{font-size:15.5px;color:var(--ink-2);line-height:1.5;flex:1}
+.v b{align-self:flex-start;margin-top:8px;background:var(--yellow);padding:12px 20px;border-radius:6px;font:700 15px/1 var(--head)}
+.v:hover b{background:#ffd057}
+
+.band{background:var(--card);border-block:1px solid var(--line);padding:64px 0}
+.cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);gap:48px;align-items:start}
+.band h2{font-size:clamp(1.6rem,3vw,2.3rem)}
+.band h2+p{margin-top:16px;color:var(--steel)}
+.nums{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:26px}
+.nums div{border:2px solid var(--ink);border-radius:6px;padding:14px 16px}
+.nums b{display:block;font:800 26px/1.1 var(--head)}
+.nums span{font-size:14px;color:var(--steel);line-height:1.35;display:block;margin-top:4px}
+.fix{counter-reset:f;display:grid;gap:0}
+.fix li{list-style:none;counter-increment:f;display:grid;grid-template-columns:44px 1fr;gap:4px 14px;padding:18px 0;border-top:1px solid var(--line)}
+.fix li:first-child{border-top:0;padding-top:0}
+.fix li::before{content:counter(f);grid-row:1/3;width:36px;height:36px;border-radius:50%;background:var(--ink);color:var(--yellow);font:800 16px/36px var(--head);text-align:center}
+.fix h3{font-size:18px;line-height:1.25;align-self:center}
+.fix p{grid-column:2;font-size:15.5px;color:var(--steel);line-height:1.5}
+
+.next{padding:56px 0 64px}
+.next h2{font-size:clamp(1.6rem,3vw,2.3rem);margin-bottom:22px}
+.next ol{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;counter-reset:n}
+.next li{list-style:none;counter-increment:n;background:var(--ink);color:#fff;border-radius:8px;padding:24px 24px 26px}
+.next li::before{content:"0" counter(n);display:block;font:800 30px/1 var(--head);color:var(--yellow);margin-bottom:12px}
+.next h3{font-size:19px;margin-bottom:8px}
+.next p{font-size:15.5px;color:#c6ccd3;line-height:1.5}
+
+footer{border-top:1px solid var(--line);padding:24px 0 32px;font-size:14px;color:var(--steel)}
+
+@media (max-width:980px){
+  .vars,.next ol{grid-template-columns:1fr}
+  .cols{grid-template-columns:1fr;gap:32px}
+  .v img{aspect-ratio:16/9}
+}
+@media (max-width:560px){
+  body{font-size:16px}
+  .intro{padding:36px 0 28px}
+  .intro p{font-size:17px}
+  .top span{display:none}
+  .band{padding:44px 0}
+  .next{padding:44px 0 48px}
+}
+@media (max-width:360px){.v h2{font-size:20px}}
+@media (prefers-reduced-motion:reduce){.v{transition:none}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <img src="assets/brand/logo.png" alt="Технофургон" width="900" height="165">
+    <span>Концепт для tehnofurgon.ru</span>
+  </div>
+</header>
+
+<main>
+  <section class="intro">
+    <div class="wrap">
+      <span class="badge">Быстрый набросок, не готовый сайт</span>
+      <h1>Главная страница Технофургона: три концепта</h1>
+      <p>Мы изучили действующий сайт и собрали три варианта главной. Задача набросков простая: показать, как может выглядеть первый экран, каталог и заявка, если поставить вперёд фотографии изделий и цены.</p>
+      <p>Это черновики. Выбранное направление отрисуем вручную: со своей сеткой, графикой и вашими фотографиями.</p>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="vars">
+      <a class="v" href="v1/">
+        <img src="assets/preview/v1.jpg" alt="Первый экран варианта 1" width="1200" height="750">
+        <div>
+          <small>Вариант 1</small>
+          <h2>Светлый каталог</h2>
+          <p>Светлый фон, ваши фотографии и цена «от» на каждой карточке. Этапы от каркаса до готового кузова, блок материалов и форма, где изделие выбирается одним нажатием.</p>
+          <b>Открыть вариант 1</b>
+        </div>
+      </a>
+      <a class="v" href="v2/">
+        <img src="assets/preview/v2.jpg" alt="Первый экран варианта 2" width="1200" height="750">
+        <div>
+          <small>Вариант 2</small>
+          <h2>Строгий производственный</h2>
+          <p>Тёмная шапка, крупный первый экран с фотографией и четырьмя фактами. Восемь направлений в одной сетке, примеры работ с ценами и расчёт внизу страницы.</p>
+          <b>Открыть вариант 2</b>
+        </div>
+      </a>
+      <a class="v" href="v3/">
+        <img src="assets/preview/v3.jpg" alt="Первый экран варианта 3" width="1200" height="750">
+        <div>
+          <small>Вариант 3</small>
+          <h2>Тёмный имиджевый</h2>
+          <p>Тёмная страница с единым стилем съёмки и блоком «Подберите решение», из которого может вырасти конфигуратор кузова. Часть изображений здесь сгенерирована нейросетью как пример стиля.</p>
+          <b>Открыть вариант 3</b>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <section class="band">
+    <div class="wrap cols">
+      <div>
+        <h2>Что поменяли относительно действующей главной</h2>
+        <p>Сейчас главная занимает около 12 экранов прокрутки на компьютере. В набросках та же информация помещается в 5–7 экранов.</p>
+        <div class="nums">
+          <div><b>≈ 12</b><span>экранов на действующей главной</span></div>
+          <div><b>5–7</b><span>экранов в концептах</span></div>
+        </div>
+      </div>
+      <ol class="fix">
+        <li><h3>Первый экран отвечает, что вы делаете</h3><p>Заголовок называет тенты, каркасы и фургоны, рядом кнопка расчёта и телефон.</p></li>
+        <li><h3>Каталог открыт сразу, без вкладок</h3><p>Восемь направлений в одной сетке, у каждого фотография и цена «от».</p></li>
+        <li><h3>Фотографии изделий вместо длинных текстов</h3><p>Тексты сокращены до одной-двух строк, подробности уходят на страницы услуг.</p></li>
+        <li><h3>Телефон и заявка всегда под рукой</h3><p>На телефоне внизу закреплены кнопки «Позвонить» и «Рассчитать».</p></li>
+        <li><h3>Одна короткая форма</h3><p>Что нужно, имя и телефон. Ничего не перекрывает содержимое страницы.</p></li>
+        <li><h3>Работы с ценами и отзывы стоят выше</h3><p>Примеры с ценой и отзывы клиентов видны до формы, а не в самом конце.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="next">
+    <div class="wrap">
+      <h2>Как смотреть</h2>
+      <ol>
+        <li><h3>Откройте с телефона</h3><p>У каждого варианта есть версия для телефона. Откройте ссылку на смартфоне или сузьте окно браузера.</p></li>
+        <li><h3>Сравните первый экран</h3><p>Понятно ли за пять секунд, что вы производите и как получить расчёт.</p></li>
+        <li><h3>Скажите, что ближе</h3><p>Можно собрать финальный дизайн из частей разных вариантов.</p></li>
+      </ol>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">Концепт для tehnofurgon.ru. Цены, отзывы и фотографии изделий взяты с действующего сайта компании. Формы в набросках ничего не отправляют.</div>
+</footer>
+
+</body>
+</html>

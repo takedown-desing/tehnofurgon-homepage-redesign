@@ -1,0 +1,575 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Технофургон — концепт главной, вариант 1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=Montserrat:wght@600;700;800&display=swap">
+<style>
+:root{
+  --ink:#14161a; --ink-2:#23262c; --steel:#56606b; --line:#d5d9dd;
+  --ground:#eef0f2; --card:#ffffff; --yellow:#f2bd38; --yellow-deep:#d99f12;
+  --head:"Montserrat","Arial Black",Arial,sans-serif;
+  --body:"Golos Text","Segoe UI",Roboto,Arial,sans-serif;
+  --wrap:1240px; --r:6px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--ground);color:var(--ink);font:400 17px/1.55 var(--body)}
+img{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3{font-family:var(--head);font-weight:800;line-height:1.08;margin:0;text-wrap:balance;letter-spacing:-.01em}
+p{margin:0}
+.wrap{max-width:var(--wrap);margin:0 auto;padding-left:max(20px,env(safe-area-inset-left));padding-right:max(20px,env(safe-area-inset-right))}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+:focus-visible{outline:3px solid var(--yellow-deep);outline-offset:3px}
+
+/* лента «концепт» */
+.concept{background:var(--yellow);color:var(--ink);font-size:14px;line-height:1.35}
+.concept .wrap{display:flex;gap:8px 20px;flex-wrap:wrap;align-items:center;justify-content:space-between;padding-top:8px;padding-bottom:8px}
+.concept b{font-weight:600}
+.concept a{font-weight:600;white-space:nowrap}
+
+/* шапка */
+.top{background:var(--ink);color:#fff;position:sticky;top:0;z-index:20}
+.top .wrap{display:flex;align-items:center;gap:28px;min-height:72px}
+.logo{flex:none}
+.logo img{height:34px;width:auto}
+.nav{display:flex;gap:24px;margin-left:auto;font-size:15px;font-weight:500}
+.nav a{text-decoration:none;color:#d9dde2;padding:10px 0;white-space:nowrap}
+.nav a:hover{color:var(--yellow)}
+.tel{font-family:var(--head);font-weight:700;font-size:17px;text-decoration:none;white-space:nowrap}
+.tel small{display:block;font:400 12px/1.2 var(--body);color:#aab1b9}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 26px;border-radius:var(--r);border:2px solid transparent;font:700 16px/1 var(--head);text-decoration:none;cursor:pointer;transition:transform .15s,background .15s}
+.btn:hover{transform:translateY(-1px)}
+.btn-y{background:var(--yellow);color:var(--ink)}
+.btn-y:hover{background:#ffd057}
+.btn-o{border-color:var(--ink);color:var(--ink);background:transparent}
+.btn-o:hover{background:var(--ink);color:#fff}
+.btn-s{min-height:44px;padding:0 18px;font-size:14px;white-space:nowrap}
+
+/* первый экран */
+.hero{padding:44px 0 56px}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,1fr);gap:48px;align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:14px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--steel)}
+.eyebrow::before{content:"";width:28px;height:4px;background:var(--yellow)}
+.hero h1{font-size:clamp(2.1rem,4.4vw,3.55rem);margin:18px 0 18px}
+.hero h1 em{font-style:normal;background:linear-gradient(transparent 62%,var(--yellow) 62%)}
+.lead{font-size:19px;color:var(--ink-2);max-width:34em}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin:28px 0 30px}
+.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin:0;padding:0;list-style:none}
+.facts li{background:var(--card);padding:14px 18px}
+.facts b{display:block;font:800 19px/1.2 var(--head)}
+.facts span{font-size:14px;color:var(--steel)}
+.shot{position:relative}
+.shot>img{width:100%;height:auto;aspect-ratio:5/4;object-fit:cover;border-radius:var(--r)}
+.tag{position:absolute;left:0;bottom:22px;background:var(--yellow);color:var(--ink);padding:12px 20px 12px 38px;border-radius:0 var(--r) var(--r) 0;font:800 18px/1.15 var(--head)}
+.tag::before{content:"";position:absolute;left:12px;top:50%;width:14px;height:14px;margin-top:-7px;border-radius:50%;background:var(--ground);box-shadow:inset 0 0 0 3px var(--ink)}
+.tag small{display:block;font:500 13px/1.2 var(--body)}
+.stages{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:10px;padding:0;list-style:none;counter-reset:st}
+.stages li{position:relative;counter-increment:st}
+.stages img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--r)}
+.stages span{display:flex;gap:8px;align-items:baseline;margin-top:8px;font-size:14px;font-weight:500;line-height:1.25}
+.stages span::before{content:counter(st);flex:none;font:800 13px/22px var(--head);width:22px;height:22px;text-align:center;border-radius:50%;background:var(--ink);color:var(--yellow)}
+
+/* кромка тента с люверсами */
+.hem{height:26px;background:
+  radial-gradient(circle at 22px 13px,var(--ground) 0 3.2px,var(--ink) 3.6px 6.4px,transparent 7px) 0 0/44px 26px repeat-x,
+  linear-gradient(var(--yellow),var(--yellow))}
+.hem.on-dark{background:
+  radial-gradient(circle at 22px 13px,var(--ink) 0 3.2px,#fff 3.6px 6.4px,transparent 7px) 0 0/44px 26px repeat-x,
+  linear-gradient(var(--yellow),var(--yellow))}
+
+section{padding:72px 0}
+.h2row{display:flex;flex-wrap:wrap;gap:12px 32px;align-items:flex-end;justify-content:space-between;margin-bottom:32px}
+h2{font-size:clamp(1.7rem,3vw,2.5rem)}
+.h2row p{color:var(--steel);max-width:30em}
+.more{font:700 15px/1 var(--head);text-decoration:none;border-bottom:3px solid var(--yellow);padding-bottom:5px;white-space:nowrap}
+.more:hover{border-color:var(--ink)}
+
+/* каталог */
+.cat{background:var(--card)}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.p{display:flex;flex-direction:column;background:var(--ground);border-radius:var(--r);overflow:hidden;text-decoration:none;transition:box-shadow .2s,transform .2s}
+.p:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(20,22,26,.14)}
+.p .ph{position:relative;overflow:hidden}
+.p img{width:100%;aspect-ratio:4/3;object-fit:cover;transition:transform .4s}
+.p:hover img{transform:scale(1.04)}
+.p .price{position:absolute;left:0;bottom:12px;background:var(--yellow);padding:7px 14px;border-radius:0 var(--r) var(--r) 0;font:800 16px/1.1 var(--head)}
+.p .tx{padding:16px 18px 20px;display:flex;flex-direction:column;gap:6px;flex:1}
+.p h3{font-size:19px}
+.p p{font-size:15px;color:var(--steel);line-height:1.4}
+.p.big{grid-column:span 2}
+.p.big img{aspect-ratio:16/9}
+.p.big h3{font-size:24px}
+
+/* работы */
+.works{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.w{background:var(--card);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column}
+.w img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.w .tx{padding:20px 22px 24px;display:flex;flex-direction:column;gap:10px;flex:1}
+.w h3{font-size:22px;display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+.w h3 b{background:var(--yellow);padding:4px 10px;border-radius:4px;white-space:nowrap;font-size:19px}
+.w ul{margin:0;padding:0;list-style:none;font-size:15px;color:var(--ink-2)}
+.w li{padding:7px 0;border-top:1px dashed var(--line)}
+.w.gal{background:var(--ink);color:#fff;justify-content:space-between}
+.w.gal .duo{display:grid;grid-template-columns:1fr 1fr;gap:2px}
+.w.gal .duo img{aspect-ratio:1/1}
+.w.gal p{color:#c4cad1;font-size:15px}
+.w.gal .more{color:#fff;align-self:flex-start}
+
+/* почему */
+.why{background:var(--ink);color:#fff;padding:0}
+.why-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:0}
+.why-ph{min-height:420px;position:relative}
+.why-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:0% 50%}
+.why-tx{padding:64px max(20px,calc((100vw - var(--wrap))/2 + 20px)) 64px 56px}
+.why h2{margin-bottom:32px}
+.why dl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 36px;margin:0}
+.why dt{font:800 26px/1.1 var(--head);color:var(--yellow);margin-bottom:8px}
+.why dd{margin:0;color:#c9ced4;font-size:16px}
+
+/* материалы */
+.mat-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:18px}
+.box{background:var(--card);border-radius:var(--r);padding:28px 30px}
+.box h3{font-size:22px;margin-bottom:6px}
+.box>p{color:var(--steel);font-size:15px;margin-bottom:22px}
+.dens{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:0;padding:0;list-style:none}
+.dens li{border:2px solid var(--ink);border-radius:var(--r);padding:16px 14px 14px;position:relative;overflow:hidden}
+.dens li::after{content:"";position:absolute;left:0;right:0;bottom:0;background:var(--yellow)}
+.dens li:nth-child(1)::after{height:5px}.dens li:nth-child(2)::after{height:9px}.dens li:nth-child(3)::after{height:13px}
+.dens b{display:block;font:800 30px/1 var(--head)}
+.dens span{font-size:13px;color:var(--steel)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 0;padding:0;list-style:none}
+.chips li{background:var(--ground);border-radius:100px;padding:7px 14px;font-size:14px;font-weight:500}
+.fit{display:grid;grid-template-columns:150px minmax(0,1fr);gap:22px;align-items:start}
+.fit img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:var(--r)}
+
+/* шаги */
+.steps{background:var(--card)}
+.st{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;margin:0;padding:0;list-style:none;counter-reset:s}
+.st li{counter-increment:s;padding:0 22px 0 0;position:relative}
+.st li::before{content:"0" counter(s);display:block;font:800 15px/1 var(--head);color:var(--steel);margin-bottom:14px}
+.st li::after{content:"";display:block;position:absolute;left:0;right:0;top:29px;border-top:2px dashed var(--line)}
+.st i{position:relative;z-index:1;display:block;width:16px;height:16px;border-radius:50%;background:var(--card);box-shadow:inset 0 0 0 4px var(--ink);margin:6px 0 16px}
+.st li:last-child i{box-shadow:none;background:var(--yellow);outline:4px solid var(--ink);outline-offset:-4px}
+.st h3{font-size:18px;margin-bottom:6px}
+.st p{font-size:15px;color:var(--steel);line-height:1.4}
+
+/* отзывы */
+.rev{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.q{background:var(--card);border-radius:var(--r);padding:22px 22px 20px;margin:0;display:flex;flex-direction:column;gap:14px;border-top:5px solid var(--yellow)}
+.q blockquote{margin:0;font-size:16px;line-height:1.5}
+.q figcaption{margin-top:auto;font:700 15px/1.2 var(--head)}
+.q figcaption span{display:block;font:400 13px/1.3 var(--body);color:var(--steel);margin-top:4px}
+.ya{margin-top:18px;background:var(--ink);color:#fff;border-radius:var(--r);padding:18px 22px;display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;justify-content:space-between}
+.ya b{color:var(--yellow)}
+
+/* заявка */
+.req{background:var(--ink);color:#fff;padding:0 0 72px}
+.req .wrap{padding-top:64px}
+.req-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:56px;align-items:start}
+.req h2{margin-bottom:14px}
+.req .lead{color:#c9ced4;font-size:18px}
+.cont{margin:30px 0 0;padding:0;list-style:none;display:grid;gap:18px}
+.cont li{display:grid;grid-template-columns:120px minmax(0,1fr);gap:14px;font-size:16px;border-top:1px solid #33373e;padding-top:16px}
+.cont span{color:#9aa2ab;font-size:14px}
+.cont a{text-decoration:none}
+.cont a.big{font:800 24px/1.1 var(--head);color:var(--yellow)}
+form{background:#fff;color:var(--ink);border-radius:var(--r);padding:28px}
+fieldset{border:0;margin:0 0 20px;padding:0}
+legend,label.l{display:block;font:700 14px/1.2 var(--head);margin-bottom:10px;padding:0}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opts label{position:relative;cursor:pointer}
+.opts input{position:absolute;opacity:0;inset:0;cursor:pointer}
+.opts span{display:block;border:2px solid var(--line);border-radius:100px;padding:9px 15px;font-size:15px;font-weight:500;min-height:44px;line-height:22px}
+.opts input:checked+span{background:var(--yellow);border-color:var(--ink)}
+.opts input:focus-visible+span{outline:3px solid var(--yellow-deep);outline-offset:2px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px}
+input[type=text],input[type=tel],textarea{width:100%;border:2px solid var(--line);border-radius:var(--r);padding:13px 14px;font:400 16px/1.3 var(--body);color:var(--ink);background:#fff}
+input:focus,textarea:focus{border-color:var(--ink);outline:none}
+textarea{min-height:84px;resize:vertical}
+form .btn{width:100%;margin-top:20px}
+.fine{font-size:13px;color:var(--steel);margin-top:12px}
+.sent{display:none;margin-top:14px;background:var(--ground);border-left:5px solid var(--yellow);padding:12px 14px;font-size:15px}
+
+footer{background:#0c0d10;color:#aab1b9;font-size:14px;padding:26px 0}
+footer .wrap{display:flex;flex-wrap:wrap;gap:10px 30px;justify-content:space-between}
+footer a{color:#d9dde2}
+
+.bar{display:none}
+
+@media (max-width:1279px){
+  html{scroll-padding-top:106px}
+  .top .wrap{flex-wrap:wrap;row-gap:8px;padding-top:10px}
+  .nav{order:5;flex:0 0 100%;margin:0;gap:26px;overflow-x:auto;scrollbar-width:none;border-top:1px solid rgba(255,255,255,.14)}
+  .nav::-webkit-scrollbar{display:none}
+  .tel{margin-left:auto}
+}
+@media (max-width:1080px){
+  .hero-grid,.req-grid,.mat-grid{grid-template-columns:1fr;gap:32px}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .works{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .w.gal{grid-column:span 2}
+  .why-in{grid-template-columns:1fr}
+  .why-ph{min-height:260px}
+  .why-ph img{object-position:50% 80%}
+  .why-tx{padding:48px 20px}
+  .rev{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .st{grid-template-columns:1fr;gap:0}
+  .st li{padding:0 0 22px 40px}
+  .st li::before{margin-bottom:4px}
+  .st li::after{left:7px;right:auto;top:0;bottom:0;border-top:0;border-left:2px dashed var(--line)}
+  .st i{position:absolute;left:0;top:0;margin:0}
+  .st li:last-child::after{display:none}
+}
+@media (max-width:640px){
+  body{font-size:16px}
+  section{padding:52px 0}
+  .top .wrap{min-height:60px;gap:12px}
+  .logo img{height:26px}
+  .top .btn,.nav{display:none}
+  .hero h1{font-size:1.72rem;margin:14px 0 14px}
+  .lead{font-size:17px}
+  .cta .btn{white-space:nowrap}
+  .tel small{display:none}
+  .hero{padding:28px 0 40px}
+  .cta .btn{flex:1 1 100%}
+  .grid{gap:12px}
+  .p.big{grid-column:span 2}
+  .p .tx{padding:12px 12px 16px}
+  .p h3{font-size:16px}.p.big h3{font-size:20px}
+  .p p{font-size:14px}
+  .p .price{font-size:14px;padding:6px 10px}
+  .works,.rev{grid-template-columns:1fr}
+  .w.gal{grid-column:auto}
+  .why dl{grid-template-columns:1fr}
+  .dens b{font-size:24px}
+  .fit{grid-template-columns:1fr;gap:14px}
+  .fit img{aspect-ratio:16/9}
+  .box{padding:22px 18px}
+  .two{grid-template-columns:1fr}
+  .cont li{grid-template-columns:1fr;gap:4px}
+  form{padding:20px 16px}
+  .bar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--ink);padding:8px max(12px,env(safe-area-inset-left)) calc(8px + env(safe-area-inset-bottom));}
+  .bar .btn{min-height:48px;padding:0 10px;font-size:15px}
+  .bar .btn-o{border-color:#fff;color:#fff}
+  footer{padding-bottom:96px}
+  html{scroll-padding-top:60px}
+  .top .wrap{flex-wrap:nowrap;padding-top:0}
+}
+@media (max-width:380px){
+  .cta .btn{padding:0 14px;font-size:15px}
+  .cta .pre{display:none}
+  .hero h1{font-size:1.5rem}
+  .facts b{font-size:16px}
+  .facts li{padding:12px 12px}
+  .p h3{font-size:15px;hyphens:auto;overflow-wrap:break-word}
+  .stages span{font-size:12px;letter-spacing:0}
+  .dens{gap:8px}
+  .dens li{padding:14px 8px 14px}
+  .dens b{font-size:21px}
+  .logo img{height:21px}
+  .tel{font-size:15px}
+  .top .wrap{gap:10px}
+}
+@media (max-width:359px){
+  .grid{grid-template-columns:1fr}
+  .p.big{grid-column:auto}
+  .p h3,.p.big h3{font-size:18px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<div class="concept">
+  <div class="wrap">
+    <span><b>Концепт главной страницы, вариант 1.</b> Быстрый набросок, не действующий сайт. Финальный дизайн отрисуем вручную.</span>
+    <a href="../">← Все варианты</a>
+  </div>
+</div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Технофургон, на главную"><img src="../assets/brand/logo.png" alt="Технофургон" width="900" height="165"></a>
+    <nav class="nav" aria-label="Основное меню">
+      <a href="#products">Продукция</a>
+      <a href="#works">Работы и&nbsp;цены</a>
+      <a href="#materials">Материалы</a>
+      <a href="#steps">Этапы</a>
+      <a href="#reviews">Отзывы</a>
+      <a href="#request">Контакты</a>
+    </nav>
+    <a class="tel" href="tel:+79015515454">+7 (901) 551-54-54<small>Пн–Вс 9:00–21:00</small></a>
+    <a class="btn btn-y btn-s" href="#request">Рассчитать стоимость</a>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Производство в Солнечногорске</span>
+      <h1>Тенты, каркасы и&nbsp;фургоны для&nbsp;грузовых автомобилей&nbsp;— <em>от&nbsp;каркаса до&nbsp;готового решения</em></h1>
+      <p class="lead">Полный цикл: изготовление, ремонт и монтаж. Работаем по Зеленограду и Московской области, оптом и в розницу.</p>
+      <div class="cta">
+        <a class="btn btn-y" href="#request">Рассчитать стоимость</a>
+        <a class="btn btn-o" href="tel:+79015515454"><span class="pre">Позвонить:&nbsp;</span>+7&nbsp;(901)&nbsp;551-54-54</a>
+      </div>
+      <ul class="facts">
+        <li><b>от&nbsp;15&nbsp;000&nbsp;₽</b><span>тент по вашим размерам</span></li>
+        <li><b>от&nbsp;1&nbsp;дня</b><span>срок на стандартное изделие</span></li>
+        <li><b>650–900&nbsp;г/м²</b><span>ПВХ и ТПУ, разные цвета</span></li>
+        <li><b>Оптом и&nbsp;в&nbsp;розницу</b><span>один тент или партия</span></li>
+      </ul>
+    </div>
+    <div>
+      <div class="shot">
+        <img src="../assets/photos/evrofurgon4.jpg" alt="Газель с тентованным еврофургоном производства Технофургон" width="1600" height="1200" style="object-position:45% 50%">
+        <div class="tag">Еврофургоны<small>от&nbsp;155&nbsp;000&nbsp;₽</small></div>
+      </div>
+      <ol class="stages" aria-label="Этапы: от каркаса до готового фургона">
+        <li><img src="../assets/photos/cont-3f.jpg" alt="Каркас фургона в цеху" loading="lazy"><span>Каркас</span></li>
+        <li><img src="../assets/photos/karkasy4.jpg" alt="Каркас с установленными воротами в цеху" style="object-position:50% 55%" loading="lazy"><span>Ворота и&nbsp;монтаж</span></li>
+        <li><img src="../assets/photos/tenty-4.jpg" alt="Готовый автомобиль с тентом" loading="lazy"><span>Готовое решение</span></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<div class="hem" aria-hidden="true"></div>
+
+<section class="cat" id="products">
+  <div class="wrap">
+    <div class="h2row">
+      <h2>Продукция на заказ</h2>
+      <p>Все направления на одном экране: с фото и ценой «от». Точную стоимость считаем по вашим размерам.</p>
+    </div>
+    <div class="grid">
+      <a class="p big" href="#request" data-pick="Автотент">
+        <div class="ph"><img src="../assets/photos/tenty-2.jpg" alt="Белая Газель с высоким тентом" loading="lazy"><span class="price">от&nbsp;15&nbsp;000&nbsp;₽</span></div>
+        <div class="tx"><h3>Автотенты</h3><p>На Газель, грузовики и прицепы. ПВХ и ТПУ, 650–900&nbsp;г/м², по индивидуальным размерам.</p></div>
+      </a>
+      <a class="p big" href="#request" data-pick="Еврофургон">
+        <div class="ph"><img src="../assets/photos/evrofurgon3.jpg" alt="Чёрный еврофургон на грузовом шасси" loading="lazy"><span class="price">от&nbsp;155&nbsp;000&nbsp;₽</span></div>
+        <div class="tx"><h3>Еврофургоны</h3><p>Под ключ, в том числе на оцинкованном основании и со сдвижными механизмами.</p></div>
+      </a>
+      <a class="p" href="#request" data-pick="Каркас">
+        <div class="ph"><img src="../assets/photos/karkasy3.jpg" alt="Металлический каркас на автомобиле" loading="lazy"><span class="price">от&nbsp;30&nbsp;000&nbsp;₽</span></div>
+        <div class="tx"><h3>Каркасы</h3><p>Под тент и шторы, в том числе разборные.</p></div>
+      </a>
+      <a class="p" href="#request" data-pick="Промтоварный фургон">
+        <div class="ph"><img src="../assets/photos/img-2931.jpg" alt="Белый промтоварный фургон" loading="lazy"><span class="price">от&nbsp;180&nbsp;000&nbsp;₽</span></div>
+        <div class="tx"><h3>Промтоварные фургоны</h3><p>Закрытый кузов под ваш автомобиль.</p></div>
+      </a>
+      <a class="p" href="#request" data-pick="Шторы на полуприцеп">
+        <div class="ph"><img src="../assets/photos/img-0519.jpg" alt="Шторный полуприцеп" loading="lazy"><span class="price">от&nbsp;40&nbsp;000&nbsp;₽</span></div>
+        <div class="tx"><h3>Шторы на полуприцепы</h3><p>ПВХ, для полуприцепов длиной 13,6&nbsp;м.</p></div>
+      </a>
+      <a class="p" href="#request" data-pick="Сдвижная крыша">
+        <div class="ph"><img src="../assets/photos/sdvizhnye-kryshi-2.jpg" alt="Кузов со сдвижной крышей" style="object-position:50% 40%" loading="lazy"><span class="price">от&nbsp;60&nbsp;000&nbsp;₽</span></div>
+        <div class="tx"><h3>Сдвижные крыши и шторы</h3><p>Механизмы для загрузки сверху и сбоку.</p></div>
+      </a>
+      <a class="p big" href="#request" data-pick="Ремонт фургона">
+        <div class="ph"><img src="../assets/photos/evrofurgon6.jpg" alt="Задние ворота фургона" style="object-position:50% 47%" loading="lazy"><span class="price">от&nbsp;5&nbsp;000&nbsp;₽</span></div>
+        <div class="tx"><h3>Ремонт фургонов и ворота</h3><p>Ремонт кузова, ворота из ламинированной фанеры: прочные, лёгкие, не боятся коррозии.</p></div>
+      </a>
+      <a class="p big" href="#request" data-pick="Фурнитура">
+        <div class="ph"><img src="../assets/photos/furgon10.jpg" alt="Замки и фурнитура на воротах фургона" style="object-position:50% 22%" loading="lazy"><span class="price">от&nbsp;10&nbsp;₽</span></div>
+        <div class="tx"><h3>Фурнитура</h3><p>Люверсы, скобы, крючки, тросы, стропы, натяжные ремни и механизмы.</p></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="works">
+  <div class="wrap">
+    <div class="h2row">
+      <h2>Работы с ценой</h2>
+      <p>Что сделали и сколько это стоило. Так проще прикинуть бюджет до звонка.</p>
+    </div>
+    <div class="works">
+      <article class="w">
+        <img src="../assets/photos/model-1.jpg" alt="Газель с тентом, изготовленным по индивидуальным размерам" loading="lazy">
+        <div class="tx">
+          <h3>Газель <b>30&nbsp;000&nbsp;₽</b></h3>
+          <ul><li>Тент 650&nbsp;г/м²</li><li>По индивидуальным размерам</li></ul>
+        </div>
+      </article>
+      <article class="w">
+        <img src="../assets/photos/model-2.jpg" alt="Hyundai с тентом и брендированием" loading="lazy" style="object-position:100% 50%">
+        <div class="tx">
+          <h3>Hyundai <b>40&nbsp;000&nbsp;₽</b></h3>
+          <ul><li>Тент 650&nbsp;г/м² с брендированием трафаретным способом</li><li>Задние ворота из ламинированной фанеры 21&nbsp;мм</li></ul>
+        </div>
+      </article>
+      <article class="w gal">
+        <div class="duo">
+          <img src="../assets/photos/tenty-1.jpg" alt="Газель с тентом, вид сбоку" loading="lazy">
+          <img src="../assets/photos/shtory-na-polupricep3.jpg" alt="Борт Газели со шторой" style="object-position:30% 50%" loading="lazy">
+        </div>
+        <div class="tx">
+          <h3>Ещё работы</h3>
+          <p>Шторный полуприцеп, разборный каркас с тентом 900&nbsp;г/м², оцинкованный еврофургон 4,2&nbsp;м и другие.</p>
+          <a class="more" href="https://tehnofurgon.ru/fotogalereya" rel="noopener">Фотогалерея</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="why" aria-labelledby="why-h">
+  <div class="hem on-dark" aria-hidden="true"></div>
+  <div class="why-in">
+    <div class="why-ph"><img src="../assets/photos/evrofurgon1.jpg" alt="Еврофургон на шасси грузовика в цеху Технофургон" loading="lazy"></div>
+    <div class="why-tx">
+      <h2 id="why-h">Почему выбирают нас</h2>
+      <dl>
+        <div><dt>Сроки от&nbsp;1 дня</dt><dd>Стандартное изделие изготовим в вашем присутствии.</dd></div>
+        <div><dt>Материал на выбор</dt><dd>Эконом и премиум: производители из России, Китая, Кореи и Европы.</dd></div>
+        <div><dt>Опт и розница</dt><dd>Один тент на свою машину или партия для автопарка.</dd></div>
+        <div><dt>Гарантия</dt><dd>Условия и срок фиксируем в договоре.</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section id="materials">
+  <div class="wrap">
+    <div class="h2row">
+      <h2>Материалы и фурнитура</h2>
+      <p>Подбираем под задачу и бюджет, объясняем разницу до оплаты.</p>
+    </div>
+    <div class="mat-grid">
+      <div class="box">
+        <h3>Плотность тентовой ткани</h3>
+        <p>ПВХ и ТПУ, разные цвета. Чем выше плотность, тем тяжелее и прочнее полотно.</p>
+        <ul class="dens">
+          <li><b>650</b><span>г/м²</span></li>
+          <li><b>750</b><span>г/м²</span></li>
+          <li><b>900</b><span>г/м²</span></li>
+        </ul>
+        <ul class="chips" aria-label="Чем удобен автотент">
+          <li>Простая и быстрая установка</li>
+          <li>Небольшая стоимость</li>
+          <li>Подходит на многие авто</li>
+        </ul>
+      </div>
+      <div class="box">
+        <div class="fit">
+          <img src="../assets/photos/f-5.jpg" alt="Фурнитура для тентов" loading="lazy">
+          <div>
+            <h3>Фурнитура в наличии</h3>
+            <p style="color:var(--steel);font-size:15px;margin-top:6px">Цены от&nbsp;10&nbsp;₽.</p>
+            <ul class="chips">
+              <li>Люверсы</li><li>Скобы</li><li>Крючки</li><li>Тросы</li><li>Кольца и заклёпки</li><li>Стропы</li><li>Натяжные ремни</li><li>Механизмы</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="steps" id="steps">
+  <div class="wrap">
+    <div class="h2row"><h2>Как мы работаем</h2></div>
+    <ol class="st">
+      <li><i></i><h3>Заявка или звонок</h3><p>Оставляете заявку на сайте или звоните.</p></li>
+      <li><i></i><h3>Консультация</h3><p>Бесплатно: уточняем размеры, материал и сроки.</p></li>
+      <li><i></i><h3>Договор</h3><p>Менеджер отправляет договор на вашу электронную почту.</p></li>
+      <li><i></i><h3>Производство</h3><p>Начинаем после подписания, сообщаем о готовности.</p></li>
+      <li><i></i><h3>Оплата</h3><p>Перевод с карты на карту, рассрочка, кредит, безнал с&nbsp;НДС.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section id="reviews">
+  <div class="wrap">
+    <div class="h2row">
+      <h2>Отзывы клиентов</h2>
+      <a class="more" href="https://yandex.ru/maps/org/tekhnofurgon/181787233266/reviews/" rel="noopener">Все отзывы на Яндекс Картах</a>
+    </div>
+    <div class="rev">
+      <figure class="q"><blockquote>«Ребята изготовили фургон по моему заказу. Все шикарно, в срок. Качество отличное! Очень рекомендую!»</blockquote><figcaption>Павел Ждамиров<span>Фургон на заказ</span></figcaption></figure>
+      <figure class="q"><blockquote>«Ребята сделали отличные ворота на будку. В срок уложились. Рекомендую».</blockquote><figcaption>Василий<span>Ворота на фургон</span></figcaption></figure>
+      <figure class="q"><blockquote>«Спасибо огромное за работу, как договаривались, работа сделана чётко».</blockquote><figcaption>Эльнур<span>Тент на Газель</span></figcaption></figure>
+      <figure class="q"><blockquote>«Работа выполнена быстро, качественно. Остался всем доволен. Бригада работает грамотно, слаженно».</blockquote><figcaption>Олег<span>Отзыв с сайта компании</span></figcaption></figure>
+    </div>
+    <div class="ya"><span>Оставьте отзыв в Яндексе и получите <b>скидку 500 рублей</b>.</span></div>
+  </div>
+</section>
+
+<section class="req" id="request">
+  <div class="hem on-dark" aria-hidden="true"></div>
+  <div class="wrap req-grid">
+    <div>
+      <h2>Рассчитаем стоимость по вашим размерам</h2>
+      <p class="lead">Выберите, что нужно, и оставьте телефон. Консультация бесплатная.</p>
+      <ul class="cont">
+        <li><span>Телефон</span><a class="big" href="tel:+79015515454">+7 (901) 551-54-54</a></li>
+        <li><span>Почта</span><a href="mailto:tehnofurgon@mail.ru">tehnofurgon@mail.ru</a></li>
+        <li><span>Режим</span><div>Заявки: Пн–Вс 9:00–21:00<br>Производство: Пн–Пт 9:00–18:00</div></li>
+        <li><span>Адрес</span><div>Московская область, г.о. Солнечногорск, посёлок Жилино, квартал Производственный № 1<br><a class="more" style="display:inline-block;margin-top:12px;color:#fff" href="https://yandex.ru/maps/org/tekhnofurgon/181787233266/" rel="noopener">Построить маршрут</a></div></li>
+      </ul>
+    </div>
+    <form id="f" novalidate>
+      <fieldset>
+        <legend>Что нужно</legend>
+        <div class="opts">
+          <label><input type="radio" name="what" value="Автотент" checked><span>Автотент</span></label>
+          <label><input type="radio" name="what" value="Каркас"><span>Каркас</span></label>
+          <label><input type="radio" name="what" value="Еврофургон"><span>Еврофургон</span></label>
+          <label><input type="radio" name="what" value="Промтоварный фургон"><span>Промтоварный фургон</span></label>
+          <label><input type="radio" name="what" value="Шторы на полуприцеп"><span>Шторы на полуприцеп</span></label>
+          <label><input type="radio" name="what" value="Сдвижная крыша"><span>Сдвижная крыша</span></label>
+          <label><input type="radio" name="what" value="Ремонт фургона"><span>Ремонт</span></label>
+          <label><input type="radio" name="what" value="Фурнитура"><span>Фурнитура</span></label>
+        </div>
+      </fieldset>
+      <div class="two">
+        <div><label class="l" for="n">Имя</label><input id="n" type="text" autocomplete="name"></div>
+        <div><label class="l" for="t">Телефон</label><input id="t" type="tel" autocomplete="tel" placeholder="+7"></div>
+      </div>
+      <label class="l" for="c">Автомобиль и размеры (если знаете)</label>
+      <textarea id="c" placeholder="Например: Газель, кузов 4,2&nbsp;м"></textarea>
+      <button class="btn btn-y" type="submit">Получить расчёт</button>
+      <p class="fine">Нажимая кнопку, вы соглашаетесь на обработку персональных данных.</p>
+      <p class="sent" id="sent" role="status">Это концепт: заявка никуда не отправляется. На рабочем сайте здесь будет подтверждение.</p>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Концепт для tehnofurgon.ru. Фото и факты взяты с действующего сайта компании.</span>
+    <a href="../">Все варианты</a>
+  </div>
+</footer>
+
+<div class="bar">
+  <a class="btn btn-o" href="tel:+79015515454">Позвонить</a>
+  <a class="btn btn-y" href="#request">Рассчитать</a>
+</div>
+
+<script>
+document.querySelectorAll('[data-pick]').forEach(function(a){
+  a.addEventListener('click',function(){
+    var r=document.querySelector('input[name="what"][value="'+a.dataset.pick+'"]');
+    if(r) r.checked=true;
+  });
+});
+document.getElementById('f').addEventListener('submit',function(e){
+  e.preventDefault();
+  document.getElementById('sent').style.display='block';
+});
+</script>
+</body>
+</html>
